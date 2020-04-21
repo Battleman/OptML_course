@@ -8,19 +8,12 @@ import numpy as np
 
 def calculate_mse(e):
     """Calculate the mean squared error for vector e."""
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: compute mean squared error
-    # ***************************************************
-    raise NotImplementedError
+    return 1/2*np.mean(e**2)
 
 def compute_gradient(b, A, x):
     """Compute the gradient."""
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: compute gradient and objective
-    # ***************************************************
-
+    err = b - A.dot(x)
+    grad = -A.T.dot(err) / len(err)
     return grad, err
 
 def gradient_descent(b, A, initial_x, max_iters, gamma):
@@ -30,16 +23,11 @@ def gradient_descent(b, A, initial_x, max_iters, gamma):
     objectives = []
     x = initial_x
     for n_iter in range(max_iters):
-        # ***************************************************
-        # INSERT YOUR CODE HERE
-        # TODO: compute gradient and objective function
-        # ***************************************************
-        raise NotImplementedError
-        # ***************************************************
-        # INSERT YOUR CODE HERE
-        # TODO: update x by a gradient descent step
-        # ***************************************************
-        raise NotImplementedError
+        # compute objective, gradient
+        grad, err = compute_gradient(b, A, x)
+        obj = calculate_mse(err)
+        # update x by a gradient descent step
+        x = x - gamma * grad
         # store x and objective function value
         xs.append(x)
         objectives.append(obj)
